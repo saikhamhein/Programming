@@ -1,6 +1,12 @@
 from matplotlib import pyplot as plt
 from scipy import signal
-data = open("data.txt")
+import os
+
+here = os.path.dirname(os.path.abspath(__file__))  # find the working dir path
+test_file = os.path.join(here, 'data.txt')        # create correct dir path
+
+
+data = open(test_file)
 y = data.read()
 y = y.split()
 for i in range(0, len(y)):
