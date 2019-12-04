@@ -1,6 +1,10 @@
 import numpy as np
 from scipy.signal import butter, lfilter, freqz
 import matplotlib.pyplot as plt
+import os
+
+here = os.path.dirname(os.path.abspath(__file__))  # find the working dir path
+test_file = os.path.join(here, 'data.txt')        # create correct dir path
 
 
 def butter_lowpass(cutoff, fs, order=5):
@@ -46,7 +50,7 @@ data = np.sin(1.2*2*np.pi*t) + 1.5*np.cos(9*2*np.pi*t) + \
     0.5*np.sin(18.0*2*np.pi*t)
 
 # open the file containing data
-test = open("data.txt")
+test = open(test_file)
 test_data = test.read()
 test_data = test_data.split()
 for i in range(0, len(test_data)):
