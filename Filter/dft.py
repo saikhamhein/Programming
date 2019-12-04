@@ -11,7 +11,7 @@ def cart2pol(x, y):
     return(rho)
 
 
-fs = 8000  # samples per sec (rading)
+fs = 8000  # samples per sec (reading)
 raw_fs = 24000  # raw_data sample (generating)
 
 # not necessary generated for visual(plotting) purpose only
