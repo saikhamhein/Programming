@@ -1,7 +1,13 @@
+import os
+
+here = os.path.dirname(os.path.abspath(__file__))  # find the working dir path
+ip_file = os.path.join(here, 'input.txt')        # create correct dir path
 # open the input.txt
-ip = open("input.txt")
+ip = open(ip_file)
 # create output.txt file with write operation
-output = open("output.txt", "w")
+
+op_file = os.path.join(here, 'output.txt')
+output = open(op_file, "w")
 string = ""
 data_list = []
 a = ip.read()
