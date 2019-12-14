@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# testing
-
 
 def cart2pol(x, y):
     rho = np.sqrt(x**2 + y**2)  # calculate real
