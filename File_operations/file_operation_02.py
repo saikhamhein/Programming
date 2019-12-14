@@ -1,5 +1,9 @@
 import re
-ip = open("input.txt")
+import os
+
+here = os.path.dirname(os.path.abspath(__file__))  # find the working dir path
+ip_file = os.path.join(here, 'input.txt')        # create correct dir path
+ip = open(ip_file)
 
 
 def extract_data():
