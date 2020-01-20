@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include <stdint.h>
 //#include "DigitalStopWatch.h"
-void Init_State(void *input);
-void Red_State(void *input);
-void Yellow_State(void *input);
-void Green_State(void *input);
+void Init_State(void);
+void Red_State(void);
+void Yellow_State(void);
+void Green_State(void);
 
 uint32_t some_32bit_data = 0;
 struct StateMachine_t
 {
-    void (*next_State)(void *state);
-    void (*current_State)(void *state);
+    void (*next_State)(void);
+    void (*current_State)(void);
     void *information;
 };
 
@@ -19,9 +19,9 @@ typedef struct StateMachine_t StateMachine_t;
 StateMachine_t StateMachine_Structure = {Init_State, Init_State, &some_32bit_data}; //
 StateMachine_t *SMPtr = &StateMachine_Structure;
 
-uint8_t some_data_array[] = {"Hello World\r\n\n"};
+uint8_t some_data_array[] = {"Hello World!\r\n\n"};
 
-void Init_State(void *next_state)
+void Init_State(void)
 {
     uint32_t *ptr;
     ptr = (uint32_t *)SMPtr->information;
@@ -34,7 +34,7 @@ void Init_State(void *next_state)
     printf("%d \r\n\n", *ptr);
 }
 
-void Red_State(void *next_state)
+void Red_State(void)
 { /*the function accepting the argument must convert the void pointer to correct ptr type*/
     /*in this case cast void pointer to uint8_t */
     uint8_t *ptr;
@@ -43,14 +43,14 @@ void Red_State(void *next_state)
     SMPtr->next_State = Yellow_State;
     /*before switching the next state SMPtr->information must be updated with data for the next state*/
     /*in this case the state it need to switch after it finish processing*/
-    /*We are gonna switch to the Green State after the yellow state*/
+    /*We gonna switch to the Green State after the yellow state*/
     /*In this case yellow state must know what kind of data green state was expecting*/
     SMPtr->information = Green_State;
     printf("Red State  \r\n");
     printf(ptr);
 }
 
-void Yellow_State(void *next_state)
+void Yellow_State(void)
 {
     SMPtr->current_State = Yellow_State;
     SMPtr->next_State = SMPtr->information;
@@ -60,7 +60,7 @@ void Yellow_State(void *next_state)
     printf("Yellow State \r\n\n");
 }
 
-void Green_State(void *next_state)
+void Green_State(void)
 {
     SMPtr->current_State = Green_State;
     /*this state is a counter*/
@@ -78,7 +78,7 @@ int main()
 
     for (i = 0; i <= 9; i++)
     {
-        SMPtr->next_State(SMPtr->next_State);
+        SMPtr->next_State();
     }
 
     return 0;
