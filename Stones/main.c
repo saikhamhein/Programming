@@ -12,7 +12,7 @@ struct StateMachine_t
 {
     void (*next_State)(void);
     void (*current_State)(void);
-    void *information;
+    void *information; // This ptr serve as general purpose ptr
 };
 
 typedef struct StateMachine_t StateMachine_t;
