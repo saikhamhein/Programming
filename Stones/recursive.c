@@ -10,9 +10,22 @@ void recursive(int a)
     printf("%d\n", a);
 }
 
-int main(void)
+int main(int argc, char *argv[])
 
 {
-    recursive(0);
+    int i;
+    if (argc >= 2)
+    {
+        printf("The arguments supplied are:\n");
+        for (i = 1; i < argc; i++)
+        {
+            printf("%d \t", *argv[i] - 48);
+        }
+    }
+    else
+    {
+        printf("argument list is empty.\n");
+    }
+    recursive(*argv[1] - 48);
     return 0;
 }
