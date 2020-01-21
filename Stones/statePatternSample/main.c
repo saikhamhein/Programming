@@ -21,11 +21,12 @@ StateMachine_t * SMPtr = &StateMachine_Structure;
 void Loop_State(StateMachine_t * obj)
 {
     static const char LoopInfo[] = "Passing Info from Loop State";
+    int * ptr = (int*)obj->infoPtr;
     if( obj == NULL )
         return;
-    if( obj->infoPtr-- )
+    if( (*ptr)-- )
     {
-        printf("Loop Cnt = %d\r\n",(int)SMPtr->infoPtr);
+        printf("Loop Cnt = %d\r\n",*ptr);
     }
     else
     {
@@ -36,16 +37,18 @@ void Loop_State(StateMachine_t * obj)
 }
 
 void Init_State(StateMachine_t * obj)
-{    if( obj == NULL )
+{
+    static int loopCount = 10;
+    if( obj == NULL )
         return;
     obj->current_State = Init_State;
     obj->next_State = Loop_State;
-    obj->infoPtr = (int*)10;
+    obj->infoPtr = (int*)&loopCount;
     printf("Init State\r\n");
 }
 
 void Red_State(StateMachine_t * obj)
-{    if( obj == NULL )
+{   if( obj == NULL )
         return;
     if( obj != NULL )
     {
