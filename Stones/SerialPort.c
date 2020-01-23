@@ -1,3 +1,8 @@
+/*
+The source code is from https://www.xanthium.in/Serial-Port-Programming-using-Win32-API
+
+*/
+
 #include <stdio.h>
 #include <stdint.h>
 #include <windows.h>
@@ -21,5 +26,5 @@ int main(void)
 
     CloseHandle(hComm); //Closing the Serial Port
 
-        return 0;
+    return 0;
 }
