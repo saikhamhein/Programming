@@ -11,7 +11,7 @@ The source code is from https://www.xanthium.in/Serial-Port-Programming-using-Wi
    using recursive is not necessary for this kind of operation but i found it interesting to do so
    To do - return string head address upon exit; ie finished converting.
          - Support negative value.   
-   Note. Make sure the array got enough space to hold the converted Char and initilize with NULL value.
+   Note. Make sure the array got enough space to hold the converted string and initilize with NULL value.
       
 */
 char *numToStr(int num, char *str)
